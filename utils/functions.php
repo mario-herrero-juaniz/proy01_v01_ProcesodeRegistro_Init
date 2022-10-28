@@ -15,7 +15,9 @@ $appname = "Artean"; // ...y configuración
 
 // Cuando se llama a este script se realiza la conexión con la base de datos
 $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-if ($connection->connect_error) die($connection->connect_error);
+if ($connection->connect_error) {
+    die($connection->connect_error);
+}
 
 /***
  * Función que lanza una consulta SQL contra la base de datos,
@@ -25,8 +27,10 @@ function queryMysql($query)
 {
   global $connection;
   $result = $connection->query($query);
-  if (!$result) die($connection->error);
-  return $result;
+  if (!$result) {
+        die($connection->error);
+    }
+    return $result;
 }
 
 /***
@@ -36,8 +40,9 @@ function destroySession()
 {
   $_SESSION=array();
 
-  if (session_id() != "" || isset($_COOKIE[session_name()]))
-    setcookie(session_name(), '', time()-2592000, '/');
+  if (session_id() != "" || isset($_COOKIE[session_name()])) {
+        setcookie(session_name(), '', time() - 2592000, '/');
+    }
 
-  session_destroy();
+    session_destroy();
 }

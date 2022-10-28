@@ -15,8 +15,8 @@ $error = $user = $pass = "";
 if (isset($_POST['email'])) {
 
   // TODO Realiza la lectura de los campos del formulario en $user y $pass
-  // $user=""
-  // $pass=""
+    $user=$_POST['email'];
+    $pass=$_POST['password'];
 
   if ($user == "" || $pass == "") {
     $error = "Debes completar todos los campos";
@@ -33,7 +33,7 @@ if (isset($_POST['email'])) {
       // TODO
       // Establecer el almacenamiento de usuario en una variable "user" almacenada en sesión
       // para que al pulsar sobre el menú de Acceder no se le vuelva a preguntar por usuario/contraseña
-
+      $_SESSION['user'] = $user;
 
       header('Location: login.php?');
 
@@ -69,7 +69,7 @@ if (isset($_POST['email'])) {
             <div class="col-md-3">
                 <div class="form-control-feedback">
                     <span class="text-danger align-middle">
-                        <i class="fa fa-close"></i> <?php // TODO: Muestra mensaje de error ?>
+                        <i class="fa fa-close"></i> <?php echo $error // TODO: Muestra mensaje de error ?>
                     </span>
                 </div>
             </div>
@@ -91,7 +91,7 @@ if (isset($_POST['email'])) {
             <div class="col-md-3">
                 <div class="form-control-feedback">
                     <span class="text-danger align-middle">
-                        <?php //  TODO: Muestra mensaje de error      } ?>
+                        <?php echo $error //  TODO: Muestra mensaje de error      } ?>
                     </span>
                 </div>
             </div>
